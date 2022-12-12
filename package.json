@@ -1,0 +1,17 @@
+{
+  "name": "koa-jsonrpc-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/router": "^12.0.0",
+    "json-rpc-2.0": "^1.4.1",
+    "koa": "^2.14.1",
+    "koa-bodyparser": "^4.3.0"
+  }
+}
