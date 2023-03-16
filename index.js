@@ -3,6 +3,7 @@ const Router = require('@koa/router');
 const bodyParser = require('koa-bodyparser');
 const views = require('./views')
 const rpc = require('./views-jsonrpc')
+const logger = require('koa-logger')
 
 
 const app = new Koa();
@@ -18,6 +19,8 @@ router.post('/rpc',async(ctx)=>{
 })
 // 常规接口
 views(router)
+//log
+app.use(logger())
 // body parser
 app.use(bodyParser())
 // add router

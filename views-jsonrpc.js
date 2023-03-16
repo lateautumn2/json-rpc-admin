@@ -1,15 +1,18 @@
+const fs=require('fs')
 const {JSONRPCServer,JSONRPCErrorException} = require('json-rpc-2.0')
 
 const s=new JSONRPCServer()
 
-s.addMethod("main.fail",()=>{
-    throw new JSONRPCErrorException("I am custom error",100,{
-        detail:"I am detail"
-    })
-})
+// 加载路由
+for(const file of fs.readdirSync("view")){
+    require(`./view/${file}`)(s)
+}
 
-s.addMethod("main.login",({user,pass})=>{
-    return `${user} has logined with pass: ${pass}`
-})
+// 这是一个抛出异常的范例
+// s.addMethod("main.fail",()=>{
+//     throw new JSONRPCErrorException("I am custom error",100,{
+//         detail:"I am detail"
+//     })
+// })
 
 module.exports=s
