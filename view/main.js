@@ -1,14 +1,22 @@
-const {JSONRPCServer,JSONRPCErrorException} = require('json-rpc-2.0')
+const { JSONRPCServer, JSONRPCErrorException } = require('json-rpc-2.0')
+const { encodeJwt, checkLogin } = require('../utils')
 const db = require('../db')
 
 module.exports = (s) => {
-    s.addMethod("main.fail",()=>{
-        throw new JSONRPCErrorException("I am custom error",100,{
-            detail:"I am detail"
-        })
-    })
-    
-    s.addMethod("main.login",({user,pass})=>{
-        return `${user} has logined with pass: ${pass}`
-    })
+  s.addMethod('main.login', async ({ username, password }) => {
+    const obj = await db.findUser(username)
+    if (!obj) {
+      throw new Error('无此用户')
+    }
+    const isok = obj.password == password
+    if (!isok) {
+      throw new Error('密码错误')
+    }
+    return {
+      token: encodeJwt({
+        id: obj.id,
+        username
+      })
+    }
+  })
 }

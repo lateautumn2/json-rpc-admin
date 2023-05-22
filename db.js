@@ -21,7 +21,7 @@ const s = {}
 
 // 根据名字查找用户
 s.findUser = (name) => {
-    return knex('user').where('username', name).first()
+  return knex('user').where('username', name).first()
 }
 
 module.exports = s
