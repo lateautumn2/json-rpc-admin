@@ -1,7 +1,8 @@
+const env = require('dotenv').config().parsed
 const jwt = require('jsonwebtoken')
 const ext = {}
 const { JSONRPCErrorException } = require('json-rpc-2.0')
-const jwtKey = 'a90eeeea-7c36-46ab-89d2-eb1b173d7c71'
+const jwtKey = env.JWTKEY
 
 //生成uuid
 ext.uuidv4 = () => {
