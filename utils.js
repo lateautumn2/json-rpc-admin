@@ -30,7 +30,7 @@ ext.checkLogin = (token) => {
   try {
     return ext.decodeJwt(token)
   } catch (e) {
-    throw new JSONRPCErrorException('请先登陆', 1000)
+    throw new JSONRPCErrorException('登录失效，请重新登录', 1000)
   }
 }
 

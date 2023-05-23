@@ -19,4 +19,8 @@ module.exports = (s) => {
       })
     }
   })
+  s.addMethod('main.basicList', async (o, head) => {
+    checkLogin(head.authorization)
+    return db.getAllBaisc(o)
+  })
 }
